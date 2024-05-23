@@ -6,7 +6,6 @@ exports.getProducts = (req, res, next) => {
 			prods: products,
 			pageTitle: "Shop",
 			path: "/",
-			hasProducts: products.length > 0,
 		});
 	});
 };
