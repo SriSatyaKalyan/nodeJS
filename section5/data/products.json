@@ -1,16 +1,1 @@
-[
-	{
-		"id": "12345",
-		"title": "The Goldfinch",
-		"imageUrl": "https://images.pangobooks.com/images/cf727f96-5633-430d-af93-77174c89d0b0?width=800&quality=85&crop=1%3A1",
-		"description": "This is an awesome book!",
-		"price": "22"
-	},
-	{
-		"title": "This Other Eden",
-		"imageUrl": "https://www.usa4books.com/cdn/shop/files/81sFfiRfsUL._SL1500_800x.jpg?v=1714575945",
-		"description": "Pulitzer Winning Book",
-		"price": "25.49",
-		"id": "65746"
-	}
-]
+[{"id":"12345","title":"The Goldfinch","imageUrl":"https://images.pangobooks.com/images/cf727f96-5633-430d-af93-77174c89d0b0?width=800&quality=85&crop=1%3A1","description":"Read this book everyone!","price":"22.50"},{"id":"65746","title":"This Other Eden","imageUrl":"https://www.usa4books.com/cdn/shop/files/81sFfiRfsUL._SL1500_800x.jpg?v=1714575945","description":"                    Read this book everyone!","price":"13.67"}]
