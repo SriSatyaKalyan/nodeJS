@@ -1,6 +1,4 @@
 const Product = require("../models/product");
-const Order = require("../models/order");
-const { where } = require("sequelize");
 
 exports.getProducts = (req, res, next) => {
 	Product.fetchAll()
