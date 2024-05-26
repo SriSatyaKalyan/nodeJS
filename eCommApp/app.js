@@ -20,6 +20,12 @@ app.use((req, res, next) => {
 const Product = require("./models/product");
 const User = require("./models/user");
 
+const Cart = require("./models/cart");
+const CartItem = require("./models/cart-item");
+
+const Order = require("./models/order");
+const OrderItem = require("./models/order-item");
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 
@@ -39,6 +45,16 @@ Product.belongsTo(User, {
 });
 User.hasMany(Product);
 
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
+
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
+
 sequelize
 	// .sync({ force: true })
 	.sync()
@@ -51,7 +67,15 @@ sequelize
 		return user;
 	})
 	.then((user) => {
-		// console.log(user);
+		return user.getCart().then((cart) => {
+			// console.log("LETs CHECK CART BEFORE CREATING: " + cart);
+			if (!cart) {
+				// console.log("USER AVAILABLE INSIDE a PROMISE: " + user.id);
+				return user.createCart();
+			}
+		});
+	})
+	.then((cart) => {
 		app.listen(3000);
 	})
 	.catch((err) => {
