@@ -3,19 +3,25 @@ const path = require("path");
 
 const errorController = require("./controllers/error");
 const mongoConnect = require("./util/database").mongoConnect;
+const User = require("./models/user");
+
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-	// User.findByPk(1)
-	// 	.then((user) => {
-	// 		req.user = user;
-	// 		next();
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log(err);
-	// 	});
-	next();
+	User.findById("6653ac69879b630983a603ea")
+		.then((user) => {
+			console.log("DISPLAY USERCART", user.cart);
+			if (!user.cart) {
+				console.log("No cart.");
+				user.cart = { items: [] };
+			}
+			req.user = new User(user.name, user.email, user.cart, user._id);
+			next();
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 });
 
 app.set("view engine", "ejs");
@@ -33,6 +39,6 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 mongoConnect((client) => {
-	console.log(client);
+	// if()
 	app.listen(3000);
 });
